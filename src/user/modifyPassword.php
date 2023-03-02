@@ -29,10 +29,11 @@
         $result = $stmt->fetchAll();
         if($result != NULL && $checkedPassword == $Password)
         {
+            $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
             $query = ("update reader set Password=?
                     where Reader_ID=? and Name=?");
             $stmt= $db->prepare($query);//執行SQL語法
-            $result = $stmt->execute(array($Password, $Reader_ID, $Name));
+            $result = $stmt->execute(array($hashedPassword, $Reader_ID, $Name));
             echo "edit succeed";
         }
         else{
