@@ -2,102 +2,65 @@ function createInput(label, inputType, inputName) {
   let inputBlock =
     `<div class="row mb-3">
         <div class="col"></div>
-        <div class="col-2">` +
-    "<label for='" +
-    inputName +
-    "'>" +
-    label +
-    ":</label>" +
-    `</div>
-        <div class="col-3">` +
-    "<input type='" +
-    inputType +
-    "' name='" +
-    inputName +
-    "' id='" +
-    inputName +
-    "'/>" +
-    `</div>
+        <div class="col-2">
+          <label for="${inputName}"> ${label}: </label>
+        </div>
+        <div class="col-3">
+          <input type="${inputType}" name="${inputName}" id="${inputName}"/>
+        </div>
         <div class="col"></div>
-      </div>`;
+    </div>`;
   return inputBlock;
 }
 function createReadonlyInput(label, inputType, inputName,value) {
+  /* The readonly attribute locks user from editing the input
+      DON'T USE "disabled" because the disabled element won't be sent while the form is submitted 
+      "hidden" also hides the input but in this project, we need to tell user his/her id, therefore it can't be hidden */
   let inputBlock =
     `<div class="row mb-3">
         <div class="col"></div>
-        <div class="col-2">` +
-    "<label for='" +
-    inputName +
-    "'>" +
-    label +
-    ":</label>" +
-    `</div>
-        <div class="col-3">` +
-    "<input type='" +
-    inputType +
-    "' name='" +
-    inputName +
-    "' id='" +
-    inputName +
-    "' value='" +
-    value +
-    "' readonly />" +
-    `</div>
+        <div class="col-2">
+          <label for="${inputName}">${label}:</label>
+        </div>
+        <div class="col-3">
+          <input type="${inputType}" name="${inputName}" id="${inputName}" value="${value}" readonly />
+        </div>
         <div class="col"></div>
-      </div>`;
+    </div>`;
   return inputBlock;
 }
 function centerElement(elementHTML) {
   let result =
-    `
-  <div class="row mb-3">
+    `<div class="row mb-3">
         <div class="col"></div>
-        <div class="col">
-            ` +
-    elementHTML +
-    `
-        </div>
+        <div class="col">${elementHTML}</div>
         <div class="col"></div>
-  </div>`;
+    </div>`;
   return result;
 }
 function alignLeftElement(elementHTML) {
   let result =
-    `
-  <div class="row mb-3">
+    `<div class="row mb-3">
         <div class="col-10"></div>
         <div class="col">
-            ` +
-    elementHTML +
-    `
+            ${elementHTML}
         </div>
-  </div>`;
+    </div>`;
   return result;
 }
 
 function centerForm(elementHTML) {
   let result =
-    `
-  <div class="row mb-3">
+    `<div class="row mb-3">
         <div class="col-1"></div>
-        <div class="col">
-            ` +
-    elementHTML +
-    `
-        </div>
+        <div class="col">${elementHTML}</div>
         <div class="col-1"></div>
-  </div>`;
+    </div>`;
   return result;
 }
 
 function createSubmitButton(buttonName) {
-  let submitTag =
-    `
-    <input type="submit" value="` +
-    buttonName +
-    `">
-    `;
+  let submitTag =`<input type="submit" value="${buttonName}"/>`;
   let submitButton = centerElement(submitTag);
   return submitButton;
 }
@@ -124,22 +87,21 @@ function create_Status_Dropdown() {
 function create_Year_Dropdown(startYear, endYear) {
   let yearOptions = "";
   for (i = startYear; i <= endYear; i++) {
-    yearOptions += "<option value = " + i + ">" + i + "</option>";
+    yearOptions += `<option value = "${i}">${i}</option>`;
   }
   let year_Dropdown =
-    `
-    <div class="row mb-3">
+    `<div class="row mb-3">
       <div class="col"></div>
       <div class="col-2">
         <label>Year :</label>
       </div>
       <div class="col-3">
         <select name="Year">
-          <option value = unknown> unknown</option>` +
-    yearOptions +
-    `</select>
+          <option value = unknown> unknown</option>
+          ${yearOptions}
+        </select>
         </div>
       <div class="col"></div>
-      </div>`;
+    </div>`;
   return year_Dropdown;
 }
